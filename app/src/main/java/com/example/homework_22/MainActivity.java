@@ -9,8 +9,8 @@ import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
-    public Button buttonBack;
-    public Button buttonForward;
+    private Button buttonBack;
+    private Button buttonForward;
     private TextView textLink;
     int a = 0;
     int b = 100;
@@ -26,22 +26,19 @@ public class MainActivity extends AppCompatActivity {
 
         textLink.setText("http://myfile.org/" + (a + (int) (Math.random() * b)));
 
-        View.OnClickListener onClickListener = new View.OnClickListener() {
+        buttonBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                switch (view.getId()) {
-                    case R.id.btn_back:
-                        finish();
-                        break;
-                    case R.id.btn_forward:
-                        Intent intent = new Intent(MainActivity.this, MainActivity.class);
-                        startActivity(intent);
-                        break;
-                }
+                finish();
             }
-        };
+        });
 
-        buttonBack.setOnClickListener(onClickListener);
-        buttonForward.setOnClickListener(onClickListener);
+        buttonForward.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view){
+                Intent intent = new Intent(MainActivity.this, MainActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 }
